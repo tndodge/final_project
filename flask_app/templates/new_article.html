@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>My World Wiki</title>
+</head>
+<body>
+    <div class="main-body">
+        <div class="top-bar2">
+            <div class="top-buttons">
+                <a href="/">Home</a>
+                <a href="/account">Account</a>
+                <a href="/log_out">Logout</a>
+            </div>
+        </div>
+        <div class="sub-block">
+            <div class="header2">
+                <h1>New Article</h1>
+            </div>
+            <div class="messages">
+                {% with messages = get_flashed_messages(category_filter=["article"]) %}
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <p>{{message}}</p>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+            </div>
+            <form class="edit-form" action="/process_article" method="POST">
+                <label>Title:</label>
+                <input type="text" id="title" name="title">
+                <br>
+                <label for="subwiki">Subwiki:</label>
+                <select name="subwiki" id="subwiki">
+                    {% for subwiki in user.subwikis%}
+
+                    <option value="{{subwiki.id}}">{{subwiki.title}}</option>
+
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="viewable">Viewable by:</label>
+                <select name="viewable" id="viewable">
+                    <option value="anyone">Anyone</option>
+                    <option value="friends">Friends</option>
+                </select>
+                <br>
+                <input class="submit-button button" type="submit" value="CREATE">
+            </form>
+            <p>Once you create your article, you can add content to it.</p>
+        </div>
+    </div>
+</body>
+</html>

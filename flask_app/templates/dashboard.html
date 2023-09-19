@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>My World Wiki</title>
+</head>
+<body>
+    <div class="main-body">
+        <div class="header">
+            <h1>{{user.username}}'s Wiki</h1>
+        </div>
+        <div class="top-bar">
+            <div class="top-buttons">
+                {% if user.id != session['user_id'] %}
+                <a href="/dashboard">Home</a>
+                {% endif %}
+                <a href="/find_users">Find Users</a>
+                <a href="/new_article">New Article</a>
+                <a href="/new_subwiki">New Sub-Wiki</a>
+                <a href="/account">Account</a>
+                <a href="/log_out">Logout</a>
+            </div>
+        </div>
+        <div class="body">
+            <div class="body-header">
+                <h2>Sub-Wikis</h2>
+            </div>
+            <div class="list-block">
+                {% for subwiki in user.subwikis %}
+                <div class="sub-wiki-block">
+                    <div class="words-block">
+                        
+                        <h2>
+                            <a href="/subwiki/{{subwiki.id}}">{{subwiki.title}}</a>
+                        </h2>
+                        
+                        <p>
+                            {{subwiki.description}}
+                        </p>
+                    </div>
+                    {% if user.id == session['user_id'] %}
+                    <div class="edit-block">
+                        <a href="/edit_subwiki/{{subwiki.id}}">edit</a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% if user.subwikis|length == 0 %}
+
+                <p>Create a subwiki to start adding articles</p>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

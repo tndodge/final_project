@@ -1,0 +1,81 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.main-body{
+    margin: 20px 100px
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+}
+
+.top-bar{
+    display: flex;
+    justify-content:end;
+}
+
+.top-bar2{
+    display: flex;
+    justify-content: end;
+}
+
+.body-header{
+    display: flex;
+    justify-content: center;
+}
+
+.sub-wiki-block{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+
+.messages{
+    color: red;
+}
+
+.sub-block{
+    background-color:plum;
+    padding: 30px;
+    margin-top: 20px;
+}
+
+body {
+    background-color:moccasin;
+}
+
+.edit-form > input{
+    margin: 0px;
+}
+
+.edit-form > textarea{
+    width: 100%;
+    resize: none;
+}
+
+.edit-form > .submit-button{
+    float: right;    
+}
+
+.section-block{
+    margin: 20px 0px;
+}
+
+.user-block{
+    margin: 20px 0px;
+}
+
+.input-block{
+    margin: 10px 0px;
+}
+
+.button{
+    background-color:#f4e0ff;
+    color: black;
+    border: 1px solid black;
+    padding: 2px 2px;
+    cursor: pointer;
+}

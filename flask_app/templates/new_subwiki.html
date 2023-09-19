@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>My World Wiki</title>
+</head>
+<body>
+    <div class="main-body">
+        <div class="top-bar2">
+            <div class="top-buttons">
+                <a href="/">Home</a>
+                <a href="">Account</a>
+                <a href="/log_out">Logout</a>
+            </div>
+        </div>
+        <div class="sub-block">
+            <div class="header2">
+                <h1>New Subwiki</h1>
+            </div>
+            <div class="messages">
+                {% with messages = get_flashed_messages(category_filter=["subwiki"]) %}
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <p>{{message}}</p>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+            </div>
+            <form class="edit-form" action="/process_subwiki" method="POST">
+                <label>Title:</label>
+                <input type="text" id="title" name="title">
+                <br>
+                <label>Description:</label>
+                <br>
+                <textarea id="descritpion" name="description" cols="30" rows="10"></textarea>
+                <br>
+                <input class="submit-button button" type="submit" value="SAVE">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

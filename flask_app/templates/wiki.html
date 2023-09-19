@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>My World Wiki</title>
+</head>
+<body>
+    <div class="header">
+        <h1>{{user.username}}'s Wiki</h1>
+    </div>
+    <div class="top-bar">
+        <div class="search-bar">
+            <input type="text" placeholder="search all articles">
+        </div>
+        <div class="top-buttons">
+            <a href="/find_users">Find Users</a>
+            <a href="/new_article">New Article</a>
+            <a href="/new_subwiki">New Sub-Wiki</a>
+            <a href="">Account</a>
+            <a href="/log_out">Logout</a>
+        </div>
+    </div>
+    <div class="body">
+        <div class="body-header">
+            <h2>Sub-Wikis</h2>
+        </div>
+        <div class="list-block">
+            {% for subwiki in user.subwikis %}
+            <div class="sub-wiki-block">
+                <div class="words-block">
+                    <a href="/subwiki/{{subwiki.id}}">
+                        <h2>
+                            {{subwiki.title}}
+                        </h2>
+                    </a>
+                    <p>
+                        {{subwiki.description}}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>My World Wiki</title>
+</head>
+<body>
+    <div class="main-body">
+        <div class="top-bar2">
+            <div class="top-buttons">
+                <a href="/">Home</a>
+                <a href="/account">Account</a>
+                <a href="/log_out">Logout</a>
+            </div>
+        </div>
+        <div class="sub-block">
+            <div class="header2">
+                <h1>Edit Subwiki</h1>
+            </div>
+            <div class="messages">
+                {% with messages = get_flashed_messages(category_filter=["subwiki"]) %}
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <p>{{message}}</p>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+            </div>
+            <form class="edit-form" action="/update_subwiki" method="POST">
+                <label>Title:</label>
+                <input type="text" name="title" value="{{subwiki.title}}">
+                <br>
+                <label>Description:</label>
+                <br>
+                <textarea name="description" cols="30" rows="10">{{subwiki.description}}</textarea>
+                <br>
+                <input class="submit-button button" type="submit" value="SAVE">
+            </form>
+            <form action="/delete_subwiki/{{subwiki.id}}" method="POST">
+                <input class="button" type="submit" value="DELETE">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

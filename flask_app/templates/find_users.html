@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>My World Wiki</title>
+</head>
+<body>
+    <div class="main-body">
+        <div class="top-bar2">
+            <div class="top-buttons">
+                <a href="/">Home</a>
+                <a href="/account">Account</a>
+                <a href="/log_out">Logout</a>
+            </div>
+        </div>
+        <div class="header2">
+            <h1>Find Users</h1>
+        </div>
+        {% for user in users %}
+
+        {% if user.id != session['user_id'] %}
+
+        <div class="user-block">
+            <h3>{{user.username}}</h3>
+
+            <a href="/view_wiki/{{user.id}}">view wiki</a>
+            <form action="/add_friend/{{user.id}}" method="POST">
+                <input class="button" type="submit" value="add friend">
+            </form>
+        </div>
+
+        {% endif %}
+
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>My World Wiki</title>
+</head>
+<body>
+    <div class="main-body">
+        <div class="top-bar2">
+            <div class="top-buttons">
+                <a href="/subwiki/{{article.subwiki_id}}">Back</a>
+                <a href="/">Home</a>
+                <a href="/account">Account</a>
+                <a href="/log_out">Logout</a>
+            </div>
+        </div>
+        <div class="header2">
+            {% if article.user_id == session['user_id'] %}
+            <a href="/edit_article/{{article.id}}">Edit Article</a>
+            {% endif %}
+            <h1>{{article.title}}</h1>
+        </div>
+        {% for section in article.sections %}
+
+        <div class="section-block">
+            <h3>{{section.header}}</h3>
+            <p>{{section.content}}</p>
+        </div>
+
+        {% endfor %}
+    </div>
+</body>
+</html>
